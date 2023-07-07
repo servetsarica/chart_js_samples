@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canlı Dakikalık Grafik</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    // Canvas elementini seçiyoruz
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Başlangıç verilerini oluşturuyoruz
+    var data = {
+      labels: Array.from({ length: 30 }, (_, i) => {
+        var currentTime = new Date();
+        var hour = currentTime.getHours();
+        var minutes = currentTime.getMinutes() - (29 - i);
+        if (minutes < 0) {
+          minutes += 60;
+          hour -= 1;
+        }
+        return (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+      }), // Saatleri ve dakikaları etiket olarak oluşturuyoruz
+      datasets: [
+        {
+          label: 'Line 1',
+          data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100)), // Rastgele veri oluşturuyoruz
+          backgroundColor: 'rgba(255, 99, 132, 0.2)', // Dolgu rengi
+          borderColor: 'rgba(255, 99, 132, 1)', // Çizgi rengi
+          borderWidth: 2, // Çizgi kalınlığı
+          fill: 'start', // Dolgu alanını çizginin başlangıcından itibaren dolduruyoruz
+          tension: 0.4 // Çizgi yumuşaklığı
+        },
+        {
+          label: 'Line 2',
+          data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100)), // Rastgele veri oluşturuyoruz
+          backgroundColor: 'rgba(54, 162, 235, 0.2)', // Dolgu rengi
+          borderColor: 'rgba(54, 162, 235, 1)', // Çizgi rengi
+          borderWidth: 2, // Çizgi kalınlığı
+          fill: 'start', // Dolgu alanını çizginin başlangıcından itibaren dolduruyoruz
+          tension: 0.4 // Çizgi yumuşaklığı
+        },
+        {
+          label: 'Line 3',
+          data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100)), // Rastgele veri oluşturuyoruz
+          backgroundColor: 'rgba(255, 206, 86, 0.2)', // Dolgu rengi
+          borderColor: 'rgba(255, 206, 86, 1)', // Çizgi rengi
+          borderWidth: 2, // Çizgi kalınlığı
+          fill: 'start', // Dolgu alanını çizginin başlangıcından itibaren dolduruyoruz
+          tension: 0.4 // Çizgi yumuşaklığı
+        },
+        {
+          label: 'Line 4',
+          data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100)), // Rastgele veri oluşturuyoruz
+          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Dolgu rengi
+          borderColor: 'rgba(75, 192, 192, 1)', // Çizgi rengi
+          borderWidth: 2, // Çizgi kalınlığı
+          fill: 'start', // Dolgu alanını çizginin başlangıcından itibaren dolduruyoruz
+          tension: 0.4 // Çizgi yumuşaklığı
+        }
+      ]
+    };
+
+    // Grafik oluşturuyoruz
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+        scales: {
+          x: {
+            beginAtZero: true // X eksenini sıfırdan başlatıyoruz
+          },
+          y: {
+beginAtZero: true // Y eksenini sıfırdan başlatıyoruz
+          }
+        },
+        elements: {
+          line: {
+            tension: 0.4 // Tüm çizgilerin yumuşaklığını ayarlıyoruz
+          }
+        }
+      }
+    });
+
+    // Verileri güncellemek ve grafikleri yeniden çizmek için zamanlayıcıyı başlatıyoruz
+    setInterval(function() {
+      // Sunucu saatinden 30 dakika öncesine kadar olan saatleri alıyoruz
+      var currentTime = new Date();
+      var hour = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var last30Minutes = Array.from({ length: 30 }, (_, i) => {
+        minutes -= 1;
+        if (minutes < 0) {
+          minutes += 60;
+          hour -= 1;
+        }
+        return (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+      });
+
+      // Yeni verileri rastgele oluşturuyoruz
+      var newData1 = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+      var newData2 = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+      var newData3 = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+      var newData4 = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+
+      // Etiketleri güncelliyoruz
+      myChart.data.labels = last30Minutes.reverse();
+
+      // Verileri güncelliyoruz
+      myChart.data.datasets[0].data = newData1.reverse();
+      myChart.data.datasets[1].data = newData2.reverse();
+      myChart.data.datasets[2].data = newData3.reverse();
+      myChart.data.datasets[3].data = newData4.reverse();
+
+      // Grafikleri yeniden çiziyoruz
+      myChart.update();
+    }, 1000 * 6); // 1 dakikada bir güncelleme yapıyoruz (1 saniye * 60)
+  </script>
+</body>
+</html>
