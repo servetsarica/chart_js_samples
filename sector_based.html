@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stacked Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        var data = [
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 11, TotalUsers: 31 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 12, TotalUsers: 6 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 13, TotalUsers: 22 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 31, TotalUsers: 38 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 32, TotalUsers: 210 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 33, TotalUsers: 28 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 71, TotalUsers: 25 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 72, TotalUsers: 40 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 73, TotalUsers: 15 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00156_NEVIZADE", CellName: 74, TotalUsers: 60 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00326_DILSON_OTEL", CellName: 51, TotalUsers: 17 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00326_DILSON_OTEL", CellName: 52, TotalUsers: 20 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00326_DILSON_OTEL", CellName: 53, TotalUsers: 21 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00326_DILSON_OTEL", CellName: 54, TotalUsers: 0 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00324_DILSON_OTEL", CellName: 81, TotalUsers: 26 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00324_DILSON_OTEL", CellName: 82, TotalUsers: 200 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00324_DILSON_OTEL", CellName: 83, TotalUsers: 40 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00329_DILSON_OTEL", CellName: 84, TotalUsers: 200 },
+            { DateTime: "4.06.2023 01:53", CabName: "SR34_00329_DILSON_OTEL", CellName: 85, TotalUsers: 20 }
+        ];
+
+        // Cell gruplarını otomatik olarak bulma
+        function findCellGroups(data) {
+            var cellGroups = {};
+            data.forEach(item => {
+                var cellNum = item.CellName % 10; // CellName'in son hanesi
+                if (!(cellNum in cellGroups)) {
+                    cellGroups[cellNum] = [];
+                }
+                cellGroups[cellNum].push(item.CellName);
+            });
+            return Object.values(cellGroups);
+        }
+
+        var cellGroups = findCellGroups(data);
+        console.log(cellGroups); // Grupları kontrol etmek için konsola yazdırma
+
+        // Renkleri yumuşak tonlarda ayarla
+        function generateSoftColors(groups) {
+            var colors = [];
+            var lightnessStep = 70 / groups.length;
+            for (var i = 0; i < groups.length; i++) {
+                var lightness = 20 + lightnessStep * i;
+                colors.push(`hsl(900, 70%, ${lightness}%)`);
+            }
+            return colors;
+        }
+
+        var cabNames = [...new Set(data.map(item => item.CabName))];
+        var colorPalette = generateSoftColors(cellGroups);
+
+        var datasets = [];
+        cellGroups.forEach((group, index) => {
+            var totalUsersData = [];
+            cabNames.forEach(cabName => {
+                var filteredData = data.filter(item => group.includes(item.CellName) && item.CabName === cabName);
+                var totalUsers = filteredData.length > 0 ? filteredData.reduce((sum, item) => sum + item.TotalUsers, 0) : 0;
+                totalUsersData.push(totalUsers);
+            });
+
+            datasets.push({
+                label: `Sector ${index + 1}`,
+                data: totalUsersData,
+                backgroundColor: colorPalette[index]
+            });
+        });
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: cabNames.map(String),
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: "top"
+                    },
+                    title: {
+                        display: true,
+                        text: "mnute"
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: "CabName"
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: "TotalUsers"
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
