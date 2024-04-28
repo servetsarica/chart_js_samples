@@ -1,49 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Stacked Bar Chart</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesi eklendi -->
-</head>
-<body>
-    <canvas id="myChart"></canvas>
+        var colorPalette = generateSoftColors(cellGroups); // Renk paletini generateSoftColors fonksiyonu ile oluştur
+        var chartInstance; // Grafik örneği için değişken tanımla
 
-    <script>
-        var data = []; // Boş veri dizisi ile başlayın
-        var cabNames = [];
-        var colorPalette = [];
-        var datasets = [];
-
-        // Cell gruplarını otomatik olarak bulma
-        function findCellGroups(data) {
-            var cellGroups = {};
-            data.forEach(item => {
-                var cellNum = item.CellName % 10; // CellName'in son hanesi
-                if (!(cellNum in cellGroups)) {
-                    cellGroups[cellNum] = [];
-                }
-                cellGroups[cellNum].push(item.CellName);
-            });
-            return Object.values(cellGroups);
-        }
-
-        // Renkleri yumuşak tonlarda ayarla
-        function generateSoftColors(groups) {
-            var colors = [];
-            var lightnessStep = 70 / groups.length;
-            for (var i = 0; i < groups.length; i++) {
-                var lightness = 20 + lightnessStep * i;
-                colors.push(`hsl(900, 70%, ${lightness}%)`);
-            }
-            return colors;
-        }
-
-        // Grafik oluşturma fonksiyonu
         function createChart(data) {
-            cabNames = [...new Set(data.map(item => item.CabName))];
-            colorPalette = generateSoftColors(cellGroups);
-
-            datasets = [];
+            // Grafik oluşturma işlemleri
+            var datasets = [];
             cellGroups.forEach((group, index) => {
                 var totalUsersData = [];
                 cabNames.forEach(cabName => {
@@ -60,7 +20,12 @@
             });
 
             var ctx = document.getElementById("myChart").getContext("2d");
-            new Chart(ctx, {
+
+            if (chartInstance) {
+                chartInstance.destroy(); // Varolan grafik örneğini yok et
+            }
+
+            chartInstance = new Chart(ctx, {
                 type: "bar",
                 data: {
                     labels: cabNames.map(String),
@@ -74,7 +39,7 @@
                         },
                         title: {
                             display: true,
-                            text: "mnute"
+                            text: "User Chart"
                         }
                     },
                     scales: {
@@ -100,7 +65,7 @@
         function updateChart() {
             $.ajax({
                 type: "GET",
-                url: "/eventgrafikcell/" + event_id, 
+                url: "/eventgrafikcell/" + event_id,
                 data: {
                     id: event_id,
                     _token: csrf
@@ -113,8 +78,29 @@
 
         $(document).ready(function() {
             updateChart(); // Sayfa yüklendiğinde grafik oluştur
-            setInterval(updateChart, 60000); // 1 dakikada bir grafik güncelle
+            setInterval(updateChart, setIntervalMinute); // Belirli aralıklarla grafik güncelle
         });
-    </script>
-</body>
-</html>
+
+        // Cell gruplarını otomatik olarak bulma
+        function findCellGroups(data) {
+            var cellGroups = {};
+            data.forEach(item => {
+                var cellNum = item.CellName % 10; // CellName'in son hanesi
+                if (!(cellNum in cellGroups)) {
+                    cellGroups[cellNum] = [];
+                }
+                cellGroups[cellNum].push(item.CellName);
+            });
+            return Object.values(cellGroups);
+        }
+
+        // Renkleri yumuşak tonlarda ayarla
+        function generateSoftColors(groups) {
+            var colors = [];
+            var lightnessStep = 70 / groups.length;
+            for (var i = 0; i < groups.length; i++) {
+                var lightness = 20 + lightnessStep * i;
+                colors.push(`hsl(900, 70%, ${lightness}%)`);
+            }
+            return colors;
+        }
