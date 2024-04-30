@@ -1,8 +1,27 @@
-var colorPalette = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
+// Başlangıç renkleri ve ton farkları
+var baseColors = {
+    '1': '#1f77b4', // Mavi
+    '2': '#d62728', // Kırmızı
+    '3': '#2ca02c', // Yeşil
+    // İhtiyaç duyulan diğer bitiş rakamları için de başlangıç renklerini ekleyebilirsiniz.
+};
+var toneDiff = 40; // Renk tonu farkı (0-255 arasında olmalı)
 
-// Bu renklerin daha koyu tonları için bir palet oluşturabiliriz.
-var darkerPalette = colorPalette.map(color => shadeColor(color, -20));
+// Renk paletini dinamik olarak oluştur
+function createColorPalette(cellName) {
+    var lastDigit = cellName.toString().slice(-1); // CellName'in son rakamını al
+    var baseColor = baseColors[lastDigit] || '#000000'; // Belirli bir bitiş rakamı için başlangıç rengini al, yoksa siyah kullan
 
+    // Renk tonlarını oluştur
+    var colorPalette = [];
+    for (var i = 0; i < 10; i++) { // 10 farklı ton
+        var tone = i * toneDiff;
+        colorPalette.push(shadeColor(baseColor, tone));
+    }
+    return colorPalette;
+}
+
+// Renk tonunu oluşturmak için yardımcı fonksiyon
 function shadeColor(color, percent) {
     var f = parseInt(color.slice(1), 16),
         t = percent < 0 ? 0 : 255,
@@ -31,7 +50,7 @@ function createChart(data) {
         datasets.push({
             label: cellName,
             data: totalUsersData,
-            backgroundColor: ""
+            backgroundColor: createColorPalette(cellName)
         });
     });
 
@@ -45,16 +64,7 @@ function createChart(data) {
         type: "bar",
         data: {
             labels: uniqueCabNames.map(String),
-            datasets: datasets.map(function(dataset, index) {
-                var colorIndex = index % colorPalette.length; // Temel renkler için
-                // veya
-                // var colorIndex = index % darkerPalette.length; // Daha koyu tonlar için
-
-                dataset.backgroundColor = colorPalette[colorIndex];
-                // veya
-                // dataset.backgroundColor = darkerPalette[colorIndex];
-                return dataset;
-            })
+            datasets: datasets
         },
         options: {
             responsive: true,
