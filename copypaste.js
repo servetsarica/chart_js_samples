@@ -1,17 +1,11 @@
-var colorPalette = [];
-for (var i = 0; i < 255; i += 15) {
-    var hex = i.toString(16).padStart(2, '0');
-    colorPalette.push("#" + hex + hex + hex);
-}
-
 function createChart(data) {
     var uniqueCabNames = [...new Set(data.map(item => item.CabName))];
     var uniqueCellNames = [...new Set(data.map(item => item.CellName))];
 
     var datasets = [];
-    uniqueCellNames.forEach(cellName => {
+    uniqueCellNames.forEach((cellName, index) => {
         var totalUsersData = [];
-        uniqueCabNames.forEach(cabName => {
+        uniqueCabNames.forEach((cabName, cabIndex) => {
             var filteredData = data.filter(item => item.CellName === cellName && item.CabName === cabName);
             var totalUsers = filteredData.length > 0 ? filteredData.reduce((sum, item) => sum + item.TotalUsers, 0) : 0;
             totalUsersData.push(totalUsers);
@@ -20,7 +14,7 @@ function createChart(data) {
         datasets.push({
             label: cellName,
             data: totalUsersData,
-            backgroundColor: ""
+            backgroundColor: generateColorPalette(index)
         });
     });
 
@@ -34,12 +28,7 @@ function createChart(data) {
         type: "bar",
         data: {
             labels: uniqueCabNames.map(String),
-            datasets: datasets.map(function (dataset, index) {
-                // Renk paletinden uygun rengi seç
-                var colorIndex = index % colorPalette.length;
-                dataset.backgroundColor = colorPalette[colorIndex];
-                return dataset;
-            })
+            datasets: datasets
         },
         options: {
             responsive: true,
@@ -88,21 +77,15 @@ function createChart(data) {
         }
     });
 }
-function updateChart() {
-    $.ajax({
-        type: "GET",
-        url: "/eventgrafikcell/" + event_id,
-        data: {
-            id: event_id,
-            _token: csrf
-        },
-        success: function(response) {
-            createChart(response);
-        }
-    });
+
+function generateColorPalette(index) {
+    var colorPalette = [];
+    var shadeCount = 5; // Farklı ton sayısı
+    var baseColor = '#' + (index * 10000 + index * 1000 + index * 100 + index * 10 + index).toString(16).slice(-6); // Temel renk oluşturur
+    for (var i = 0; i < shadeCount; i++) {
+        var shade = Math.floor(255 - i * (255 / shadeCount)); // Renk tonunu ayarlar
+        var color = baseColor + shade.toString(16).padStart(2, '0'); // Farklı renkleri oluşturur
+        colorPalette.push(color);
+    }
+    return colorPalette;
 }
- 
-$(document).ready(function() {
-    updateChart();
-    setInterval(updateChart, setIntervalMinute);
-});
