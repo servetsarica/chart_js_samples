@@ -1,35 +1,41 @@
-// Başlangıç renkleri ve ton farkları
-var baseColors = {
-    '1': '#1f77b4', // Mavi
-    '2': '#d62728', // Kırmızı
-    '3': '#2ca02c', // Yeşil
-    // İhtiyaç duyulan diğer bitiş rakamları için de başlangıç renklerini ekleyebilirsiniz.
-};
-var toneDiff = 40; // Renk tonu farkı (0-255 arasında olmalı)
-
-// Renk paletini dinamik olarak oluştur
-function createColorPalette(cellName) {
-    var lastDigit = cellName.toString().slice(-1); // CellName'in son rakamını al
-    var baseColor = baseColors[lastDigit] || '#000000'; // Belirli bir bitiş rakamı için başlangıç rengini al, yoksa siyah kullan
-
-    // Renk tonlarını oluştur
-    var colorPalette = [];
-    for (var i = 0; i < 10; i++) { // 10 farklı ton
-        var tone = i * toneDiff;
-        colorPalette.push(shadeColor(baseColor, tone));
+var colorPalette = [];
+// Mavi tonları
+for (var i = 0; i <= 81; i++) {
+    if (i % 10 === 1) {
+        colorPalette.push("#" + i.toString().padStart(2, "0") + "00FF");
     }
-    return colorPalette;
-}
-
-// Renk tonunu oluşturmak için yardımcı fonksiyon
-function shadeColor(color, percent) {
-    var f = parseInt(color.slice(1), 16),
-        t = percent < 0 ? 0 : 255,
-        p = percent < 0 ? percent * -1 : percent,
-        R = f >> 16,
-        G = f >> 8 & 0x00FF,
-        B = f & 0x0000FF;
-    return "#" + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1);
+    // Yeşil tonları
+    else if (i % 10 === 2) {
+        colorPalette.push("#00" + i.toString().padStart(2, "0") + "00");
+    }
+    // Mor tonları
+    else if (i % 10 === 3) {
+        colorPalette.push("#" + i.toString().padStart(2, "0") + "00" + i.toString().padStart(2, "0"));
+    }
+    // Kırmızı tonları
+    else if (i % 10 === 4) {
+        colorPalette.push("#FF" + i.toString().padStart(2, "0") + "00");
+    }
+    // Cyan tonları
+    else if (i % 10 === 5) {
+        colorPalette.push("#00FF" + i.toString().padStart(2, "0"));
+    }
+    // Turuncu tonları
+    else if (i % 10 === 6) {
+        colorPalette.push("#FFA5" + i.toString().padStart(2, "0"));
+    }
+    // Sarı tonları
+    else if (i % 10 === 7) {
+        colorPalette.push("#FFFF" + i.toString().padStart(2, "0"));
+    }
+    // Pembe tonları
+    else if (i % 10 === 8) {
+        colorPalette.push("#FF00" + i.toString().padStart(2, "0"));
+    }
+    // Siyah tonları
+    else if (i % 10 === 9) {
+        colorPalette.push("#" + i.toString().padStart(2, "0") + i.toString().padStart(2, "0") + i.toString().padStart(2, "0"));
+    }
 }
 
 var chartInstance;
@@ -50,7 +56,7 @@ function createChart(data) {
         datasets.push({
             label: cellName,
             data: totalUsersData,
-            backgroundColor: createColorPalette(cellName)
+            backgroundColor: ""
         });
     });
 
@@ -64,7 +70,11 @@ function createChart(data) {
         type: "bar",
         data: {
             labels: uniqueCabNames.map(String),
-            datasets: datasets
+            datasets: datasets.map(function(dataset, index) {
+                var colorIndex = index % colorPalette.length;
+                dataset.backgroundColor = colorPalette[colorIndex];
+                return dataset;
+            })
         },
         options: {
             responsive: true,
@@ -107,7 +117,7 @@ function createChart(data) {
                         text: "TotalUsers"
                     }
                 }
-            },
+            },        
             responsive: true, // Grafiği responsive hale getirir
             maintainAspectRatio: false // En boy oranını koruma
         }
