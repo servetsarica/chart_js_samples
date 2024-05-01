@@ -1,15 +1,14 @@
 var colorpalette = [
-  "#00838f",
-  "#0097a7",
-  "#00acc1",
-  "#00bcd4",
-  "#26c6da",
-  "#4dd0e1",
-  "#80deea",
-  "#b2ebf2",
-  "#e0f7fa"
+  "#0f5757", // en koyu ton
+  "#166161",
+  "#1d6b6b",
+  "#247575",
+  "#2b7f7f",
+  "#338989",
+  "#3a9393",
+  "#419d9d",
+  "#48a7a7" // en açık ton
 ];
-
 function createChart(data) {
   // CabName'e göre sıralama
   data.sort((a, b) => a.CabName.localeCompare(b.CabName));
