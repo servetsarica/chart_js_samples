@@ -1,3 +1,34 @@
+0: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 11, TotalUsers: 7}
+1: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'E5596', CellName: 11, TotalUsers: 3}
+2: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 11, TotalUsers: 5}
+3: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 12, TotalUsers: 2}
+4: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'E5596', CellName: 12, TotalUsers: 4}
+5: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 12, TotalUsers: 1}
+6: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 13, TotalUsers: 0}
+7: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 13, TotalUsers: 10}
+8: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 31, TotalUsers: 6}
+9: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'E5596', CellName: 31, TotalUsers: 25}
+10: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 31, TotalUsers: 26}
+11: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 32, TotalUsers: 13}
+12: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'E5596', CellName: 32, TotalUsers: 14}
+13: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 32, TotalUsers: 5}
+14: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 33, TotalUsers: 3}
+15: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 33, TotalUsers: 13}
+16: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 51, TotalUsers: 162}
+17: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 52, TotalUsers: 31}
+18: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 53, TotalUsers: 58}
+19: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 71, TotalUsers: 4}
+20: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 72, TotalUsers: 6}
+21: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 73, TotalUsers: 35}
+22: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 81, TotalUsers: 27}
+23: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 81, TotalUsers: 56}
+24: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 82, TotalUsers: 16}
+25: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: 'M7210', CellName: 82, TotalUsers: 9}
+26: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 83, TotalUsers: 20}
+
+
+
+
 var colorPalette = ['green', 'blue', 'red', 'yellow', 'cyan', 'orange', 'black', 'pink']; // Color palette for unique numbers
 
 var chartInstance;
