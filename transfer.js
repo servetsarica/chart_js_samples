@@ -1,3 +1,52 @@
+
+function createChart(data) {
+  // CabName'e göre sıralama
+  data.sort((a, b) => a.CabName.localeCompare(b.CabName));
+  
+  // CellName'e göre sıralama
+  data.sort((a, b) => {
+    // Extract numeric part from CellName
+    const cellA = parseInt(a.CellName.toString().match(/\d+/)[0]);
+    const cellB = parseInt(b.CellName.toString().match(/\d+/)[0]);
+    return cellA - cellB;
+  });
+
+  var uniqueCabNames = [...new Set(data.map(item => item.CabName))];
+  var uniqueCellNames = [...new Set(data.map(item => item.CellName))];
+  var datasets = [];
+  uniqueCellNames.forEach(cellName => {
+    var totalUsersData = [];
+    uniqueCabNames.forEach(cabName => {
+      var filteredData = data.filter(item => item.CellName === cellName && item.CabName === cabName);
+      var totalUsers = filteredData.length > 0 ? filteredData.reduce((sum, item) => sum + item.TotalUsers, 0) : 0;
+      totalUsersData.push(totalUsers);
+    });
+
+    // Get the first character of the cell name (assuming numbers are single digits)
+    var firstChar = cellName.toString().charAt(0);
+    // Convert the first character to a number
+    var number = parseInt(firstChar);
+
+    // Assign a color from the palette based on the number
+    var color = colorPalette[number % colorPalette.length];
+    //console.log(cellName + " " + color)
+    datasets.push({
+      label: cellName,
+      data: totalUsersData,
+      backgroundColor: color,
+      borderColor: 'white',
+      borderWidth: 3
+    });
+  });
+
+  // Create chart using datasets
+}
+
+
+
+
+
+
 0: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 11, TotalUsers: 7}
 1: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 12, TotalUsers: 2}
 2: {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', CellName: 13, TotalUsers: 0}
