@@ -2,6 +2,7 @@ var colorPalette = ['green', 'blue', 'red', 'yellow', 'cyan', 'orange', 'black',
 
 var chartInstance;
 
+
 function createChart(data) {
     data.sort((a, b) => a.CabName.localeCompare(b.CabName));
     
