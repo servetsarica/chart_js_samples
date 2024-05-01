@@ -99,21 +99,14 @@ function sortData(data) {
     if (a.CabName !== b.CabName) {
       return a.CabName.localeCompare(b.CabName);
     }
-    // Within the same CabName, sort by CellName (ascending order)
-    const cellA = a.CellName.toString();
-    const cellB = b.CellName.toString();
-    // Compare the first character of CellName
-    if (cellA.charAt(0) !== cellB.charAt(0)) {
-      return cellA.charAt(0) - cellB.charAt(0);
-    }
-    // Compare the second character of CellName if the first characters are equal
-    if (cellA.charAt(1) !== cellB.charAt(1)) {
-      return cellA.charAt(1) - cellB.charAt(1);
-    }
-    // If both characters are equal, maintain the order
-    return 0;
+    // Extract the numerical part of CellName for comparison
+    const cellA = parseInt(a.CellName.toString().match(/\d+/)[0]);
+    const cellB = parseInt(b.CellName.toString().match(/\d+/)[0]);
+    // Compare the numerical part of CellName
+    return cellA - cellB;
   });
 }
+
 
 function updateChart() {
   $.ajax({
