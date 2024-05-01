@@ -1,3 +1,17 @@
+var colorpalette = [
+  "#f5e1ff",
+  "#dac4e2",
+  "#c2a5cf",
+  "#aa86b9",
+  "#91679e",
+  "#7a5485",
+  "#66436d",
+  "#513356",
+  "#3e2340",
+  "#2a1229"
+];
+
+
 function createChart(data) {
   // CabName'e göre sıralama
   data.sort((a, b) => a.CabName.localeCompare(b.CabName));
