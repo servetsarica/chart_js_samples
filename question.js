@@ -129,90 +129,34 @@ $(document).ready(function() {
 
 my sorted data is 
 
-0
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 11, TotalUsers: 7}
-1
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 12, TotalUsers: 1}
-2
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 13, TotalUsers: 0}
-3
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 31, TotalUsers: 6}
-4
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 32, TotalUsers: 18}
-5
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 33, TotalUsers: 3}
-6
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 81, TotalUsers: 33}
-7
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 82, TotalUsers: 31}
-8
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 83, TotalUsers: 12}
-9
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 11, TotalUsers: 3}
-10
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 12, TotalUsers: 6}
-11
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 31, TotalUsers: 21}
-12
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 32, TotalUsers: 18}
-13
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 11, TotalUsers: 1}
-14
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 12, TotalUsers: 2}
-15
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 13, TotalUsers: 14}
-16
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 31, TotalUsers: 20}
-17
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 32, TotalUsers: 5}
-18
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 33, TotalUsers: 47}
-19
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 51, TotalUsers: 138}
-20
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 52, TotalUsers: 46}
-21
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 53, TotalUsers: 167}
-22
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 71, TotalUsers: 7}
-23
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 72, TotalUsers: 2}
-24
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 73, TotalUsers: 38}
-25
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 81, TotalUsers: 40}
-26
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 82, TotalUsers: 20}
-27
-: 
-{eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 83, TotalUsers: 68}
+0: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 11, TotalUsers: 7}
+1: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 12, TotalUsers: 1}
+2: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 13, TotalUsers: 0}
+3: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 31, TotalUsers: 6}
+4: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 32, TotalUsers: 18}
+5: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 33, TotalUsers: 3}
+6: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 81, TotalUsers: 33}
+7: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 82, TotalUsers: 31}
+8: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: '01883', CellName: 83, TotalUsers: 12}
+9: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 11, TotalUsers: 3}
+10: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 12, TotalUsers: 6}
+11: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 31, TotalUsers: 21}
+12: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'E5596', CellName: 32, TotalUsers: 18}
+13: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 11, TotalUsers: 1}
+14: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 12, TotalUsers: 2}
+15: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 13, TotalUsers: 14}
+16: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 31, TotalUsers: 20}
+17: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 32, TotalUsers: 5}
+18: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 33, TotalUsers: 47}
+19: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 51, TotalUsers: 138}
+20: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 52, TotalUsers: 46}
+21: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 53, TotalUsers: 167}
+22: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 71, TotalUsers: 7}
+23: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 72, TotalUsers: 2}
+24: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 73, TotalUsers: 38}
+25: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 81, TotalUsers: 40}
+26: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 82, TotalUsers: 20}
+27: {eventId: 364, DateTime: '2024-05-01 13:26:00', CabName: 'M7210', CellName: 83, TotalUsers: 68}
 
 I want to sort my data like 
 
