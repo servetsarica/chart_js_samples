@@ -1,14 +1,20 @@
-
 function createChart(data) {
   // CabName'e göre sıralama
   data.sort((a, b) => a.CabName.localeCompare(b.CabName));
   
   // CellName'e göre sıralama
   data.sort((a, b) => {
-    // Extract numeric part from CellName
-    const cellA = parseInt(a.CellName.toString().match(/\d+/)[0]);
-    const cellB = parseInt(b.CellName.toString().match(/\d+/)[0]);
-    return cellA - cellB;
+    // Extract last and first digits from CellName
+    const lastDigitA = parseInt(a.CellName.toString().slice(-1));
+    const lastDigitB = parseInt(b.CellName.toString().slice(-1));
+    const firstDigitA = parseInt(a.CellName.toString().charAt(0));
+    const firstDigitB = parseInt(b.CellName.toString().charAt(0));
+
+    if (lastDigitA !== lastDigitB) {
+      return lastDigitA - lastDigitB; // Son rakama göre sıralama
+    } else {
+      return firstDigitA - firstDigitB; // İlk rakama göre sıralama
+    }
   });
 
   var uniqueCabNames = [...new Set(data.map(item => item.CabName))];
@@ -41,6 +47,7 @@ function createChart(data) {
 
   // Create chart using datasets
 }
+
 
 
 
