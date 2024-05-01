@@ -1,16 +1,14 @@
 var colorpalette = [
-  "#2a1229",
-  "#3e2340",
-  "#513356",
-  "#66436d",
-  "#7a5485",
-  "#91679e",
-  "#aa86b9",
-  "#c2a5cf",
-  "#dac4e2",
-  "#f5e1ff"
+  "#e0f7fa",
+  "#b2ebf2",
+  "#80deea",
+  "#4dd0e1",
+  "#26c6da",
+  "#00bcd4",
+  "#00acc1",
+  "#0097a7",
+  "#00838f"
 ];
-
 
 function createChart(data) {
   // CabName'e göre sıralama
