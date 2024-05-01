@@ -1,13 +1,13 @@
 var colorpalette = [
-  "#e0f7fa",
-  "#b2ebf2",
-  "#80deea",
-  "#4dd0e1",
-  "#26c6da",
-  "#00bcd4",
-  "#00acc1",
+  "#00838f",
   "#0097a7",
-  "#00838f"
+  "#00acc1",
+  "#00bcd4",
+  "#26c6da",
+  "#4dd0e1",
+  "#80deea",
+  "#b2ebf2",
+  "#e0f7fa"
 ];
 
 function createChart(data) {
