@@ -1,13 +1,14 @@
 var colorPalette = [
-  "#0f5757", // en koyu ton
-  "#166161",
-  "#1d6b6b",
-  "#247575",
-  "#2b7f7f",
-  "#338989",
-  "#3a9393",
-  "#419d9d",
-  "#48a7a7" // en açık ton
+  "#042c2c",//0
+  "#042c2c",//1-#042c2c
+  "#21bcbc",//2
+  "#0f5757",//3-#0f5757
+  "#3cdddd",//4
+  "#167d7d",//5-#167d7d
+  "#8eeded",//6
+  "#1da3a3",//7-#1da3a3
+  "#23c8c8" //8-#23c8c8
+   // en açık ton
 ];
 
 var chartInstance;
@@ -35,6 +36,9 @@ function createChart(data) {
   var uniqueCellNames = [...new Set(data.map(item => item.CellName))];
   var datasets = [];
   uniqueCellNames.forEach(cellName => {
+      if (cellName.toString().charAt(0) === '2') {
+          return;
+      }
     var totalUsersData = [];
     uniqueCabNames.forEach(cabName => {
       var filteredData = data.filter(item => item.CellName === cellName && item.CabName === cabName);
@@ -55,7 +59,7 @@ function createChart(data) {
       data: totalUsersData,
       backgroundColor: color,
       borderColor: 'white',
-      borderWidth: 1
+      borderWidth: 0.5
     });
   });
 
