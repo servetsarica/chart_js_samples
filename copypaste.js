@@ -1,3 +1,132 @@
+{
+    "EventID": "364",
+    "Site": [
+        {
+        "CabName": "01883",
+        "SectorCell": [
+            {
+            "Sector": "1",
+            "CellIDs": [
+                {
+                "CellID": "11",
+                "TotalUsers": 7
+                },
+                {
+                "CellID": "31",
+                "TotalUsers": 38
+                },
+                {
+                "CellID": "51",
+                "TotalUsers": 67
+                },
+                {
+                "CellID": "71",
+                "TotalUsers": 74
+                }
+            ]
+            },
+            {
+            "Sector": "2",
+            "CellIDs": [
+                {
+                "CellID": "12",
+                "TotalUsers": 7
+                },
+                {
+                "CellID": "32",
+                "TotalUsers": 38
+                },
+                {
+                "CellID": "52",
+                "TotalUsers": 67
+                },
+                {
+                "CellID": "72",
+                "TotalUsers": 74
+                }
+            ]
+            },
+            {
+            "Sector": "3",
+            "CellIDs": [
+                {
+                "CellID": "13",
+                "value": 70
+                }
+            ]
+            }
+        ]
+        },
+        {
+        "CabName": "E5596",
+        "SectorCell": [
+            {
+            "Sector": "1",
+            "CellIDs": [
+                {
+                "CellID": "11",
+                "TotalUsers": 7
+                },
+                {
+                "CellID": "31",
+                "TotalUsers": 38
+                },
+                {
+                "CellID": "51",
+                "TotalUsers": 67
+                },
+                {
+                "CellID": "71",
+                "TotalUsers": 74
+                }
+            ]
+            },
+            {
+            "Sector": "2",
+            "CellIDs": [
+                {
+                "CellID": "12",
+                "TotalUsers": 7
+                },
+                {
+                "CellID": "32",
+                "TotalUsers": 38
+                },
+                {
+                "CellID": "52",
+                "TotalUsers": 67
+                },
+                {
+                "CellID": "72",
+                "TotalUsers": 74
+                }
+            ]
+            },
+            {
+            "Sector": "3",
+            "CellIDs": [
+                {
+                "CellID": "13",
+                "value": 70
+                }
+            ]
+            },
+            {
+            "Sector": "4",
+            "CellIDs": [
+                {
+                "CellID": "13",
+                "value": 70
+                }
+            ]
+            }
+        ]
+        }
+    ]
+}
+
+
+
 {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', Sector: 1, CellName: 11, TotalUsers: 7},
 {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', Sector: 1, CellName: 31, TotalUsers: 6},
 {eventId: 364, DateTime: '2024-05-01 10:58:00', CabName: '01883', Sector: 1, CellName: 81, TotalUsers: 27},
